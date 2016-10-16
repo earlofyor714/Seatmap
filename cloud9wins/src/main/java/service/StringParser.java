@@ -12,12 +12,11 @@ public class StringParser {
         }
 
         String parsee = input;
-        //while (parsee.contains("Longitude")) {
-            String[] noCommas = input.split("Longitude:");
-            String[] noColons = noCommas[1].split(",");
+        String[] noCommas = parsee.split("Longitude:");
+        for (int i=1; i<noCommas.length; i++) {
+            String[] noColons = noCommas[i].split(",");
             longitudes.add(noColons[0]);
-            //parsee = noColons[1];
-        //}
+        }
         return longitudes;
     }
 
@@ -30,12 +29,11 @@ public class StringParser {
 
         String parsee = input;
 
-        //while (parsee.contains("Latitude")) {
-            String[] noCommas = input.split("Latitude:");
-            String[] noBrackets = noCommas[1].split("}");
+        String[] noCommas = parsee.split("Latitude:");
+        for (int i=1; i<noCommas.length; i++) {
+            String[] noBrackets = noCommas[i].split("}");
             latitudes.add(noBrackets[0]);
-            //parsee = noBrackets[1];
-        //}
+        }
         return latitudes;
     }
 }

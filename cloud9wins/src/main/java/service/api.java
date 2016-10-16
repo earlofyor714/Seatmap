@@ -38,8 +38,8 @@ public class api {
     public Response triangulate(String test) throws Exception {
         System.out.println("request: " + test);
 
-        String lLat = "0";
-        String lLong = "0";
+        //String lLat = "0";
+        //String lLong = "0";
         //String uLat = test;
         //String uLong = "8"; //bottom left, top right
 
@@ -52,36 +52,42 @@ public class api {
         List<String> longitudes = stringParser.parseLongitudes(test.trim());
         List<String> latitudes = stringParser.parseLatitudes(test.trim());
 
-        System.out.println("longitude: " + longitudes.get(0));
-        System.out.println("latitude: " + latitudes.get(0));
+        System.out.println("longitude: " + longitudes.size());
+        System.out.println("latitude: " + latitudes.size());
 
-        String uLat = latitudes.get(0);
+        /*String uLat = latitudes.get(0);
         String uLong = longitudes.get(0);
-        //String lLat = latitudes.get(1);
-        //String lLong = longitudes.get(1);
+        if (longitudes.size() > 1) {
+            lLat = latitudes.get(1);
+            lLong = longitudes.get(1);
+        } else {
+            lLat = "0";
+            lLong = "0";
+        }*/
 
-        /*Long totalLongitudes = 0L;
-        Long totalLatitudes = 0L;
-        Long radius = Long.getLong(String.valueOf(0.1));  //need a better way to determine radius value
+        float totalLongitudes = 0;
+        float totalLatitudes = 0;
+        float radius = (float) 0.1;  //need a better way to determine radius value
 
         //calculate midpoint
-        for (int i=0; i<longitudes.length; i++) {
-            totalLongitudes += Long.getLong(longitudes[i]);
+        for (int i=0; i<longitudes.size(); i++) {
+            float temp = Float.parseFloat(longitudes.get(i));
+            totalLongitudes = totalLongitudes + temp;
         }
-        Long avgLongitude = totalLongitudes / longitudes.length;
+        float avgLongitude = totalLongitudes / longitudes.size();
 
-        for (int i=0; i<latitudes.length; i++) {
-            totalLatitudes += Long.getLong(latitudes[i]);
+        for (int i=0; i<latitudes.size(); i++) {
+            totalLatitudes += Float.parseFloat(latitudes.get(i));
         }
-        Long avgLatitude = totalLatitudes / latitudes.length;
+        float avgLatitude = totalLatitudes / latitudes.size();
 
         //calculate corners of square
-        Long radiusModifier = radius / Long.getLong(String.valueOf(Math.sqrt(2)));
+        float radiusModifier = radius / Float.parseFloat(String.valueOf(Math.sqrt(2)));
 
         String lLat = String.valueOf(avgLatitude - radiusModifier);
         String lLong = String.valueOf(avgLongitude - radiusModifier);
         String uLat = String.valueOf(avgLatitude + radiusModifier);
-        String uLong = String.valueOf(avgLongitude + radiusModifier);*/
+        String uLong = String.valueOf(avgLongitude + radiusModifier);
 
         //
 

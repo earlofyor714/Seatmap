@@ -6,7 +6,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision :shell, path: "startup.sh"
 
-  #config.vm.synced_folder ".vagrantconf/.m2","/home/vagrant/.m2"
+  config.vm.synced_folder ".vagrantconf/.m2","/home/vagrant/.m2"
 
   config.vm.network "forwarded_port", guest: 8080, host: 8080, auto_correct: true
 

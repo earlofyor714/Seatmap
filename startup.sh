@@ -21,11 +21,22 @@ sudo apt-get install -y tomcat6
 sudo apt-get install -y apache2
 
 #set up private instance of Tomcat
-sudo apt-get -y install tomcat6-user
-mkdir -p /app/local
-tomcat6-instance-create /app/local/tomcat
+#sudo apt-get -y install tomcat6-user
+#mkdir -p /app/local
+#tomcat6-instance-create /app/local/tomcat
 
-#environment variables are imported from .bash_aliases
+#allow projects to modify Tomcat
+#sudo chmod -R 777 /app/local/tomcat
 
 #install git
 sudo apt-get install -y git
+
+#import env vars from .bash_aliases
+if [ ! -f /home/vagrant/.bash_aliases ]; then
+  cat /vagrant/.vagrantconf/.bash_aliases > /home/vagrant/.bash_aliases ;
+  source /home/vagrant/.bashrc ;
+fi;
+
+#to do: shut down tomcat!
+#sudo service tomcat6 stop
+#sudo update-rc.d -f tomcat6 remove
